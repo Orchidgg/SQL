@@ -1,0 +1,41 @@
+This project utilizes the following data I created:
+
+CREATE TABLE movie_stars (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    movies TEXT);
+
+INSERT INTO movie_stars (fullname, movies) VALUES ("Leonardo Dicaprio", "Titanic");
+INSERT INTO movie_stars (fullname, movies) VALUES ("Aaron Taylor-Johnson", "Kick-Ass");
+INSERT INTO movie_stars (fullname, movies) VALUES ("Tom Holland", "Spider-Man: No Way Home");
+INSERT INTO movie_stars (fullname, movies) VALUES ("Halle Bailey", "The Little Mermaid");
+INSERT INTO movie_stars (fullname, movies) VALUES ("Austin Butler", "Elvis");
+INSERT INTO movie_stars (fullname, movies) VALUES ("Ryan Reynolds", "Deadpool");
+INSERT INTO movie_stars (fullname, movies) VALUES ("Ashton Kutcher", "No Strings Attached");
+INSERT INTO movie_stars (fullname, movies) VALUES ("Blake Lively", "The Rhythm Section");
+INSERT INTO movie_stars (fullname, movies) VALUES ("Mila Kunis", "Bad Moms");
+
+
+CREATE table spouses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person1_id INTEGER,
+    person2_id INTEGER);
+
+INSERT INTO spouses (person1_id, person2_id) VALUES (6,8);
+INSERT INTO spouses (person1_id, person2_id) VALUES (7,9);
+
+-- Shows all names of the moviestars and the movies they have been in.
+SELECT * 
+FROM movie_stars;
+
+--Shows pairs of moviestar IDs that are married.
+SELECT * 
+FROM spouses;
+
+--Queried this to find out which movie stars are married to eachother.
+SELECT m.fullname, s.fullname
+FROM spouses
+JOIN movie_stars m
+ON m.id = spouses.person1_id
+JOIN movie_stars s
+ON s.id = spouses.person2_id;
